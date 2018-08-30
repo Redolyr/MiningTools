@@ -6,9 +6,7 @@ import net.minecraft.item.ItemStack;
 import MiningTools.Others.Proxy;
 
 /**
- *
- * @author Redolyr75724
- *
+ * @author redolyr
  */
 public class RecipeHighMiningTools
 {
@@ -21,14 +19,14 @@ public class RecipeHighMiningTools
                                           "SAS",
                                           "BXC",
                                           'X', Proxy.proxy.Items().MiningStick,
-                                          'S', Items.ender_eye,
-                                          'A', Items.diamond_axe,
-                                          'B', Items.diamond_shovel,
-                                          'C', Items.diamond_pickaxe,
-                                          'D', Blocks.lapis_block);
-            Proxy.proxy.removeRecipe(true, Items.diamond_pickaxe);
-            Proxy.proxy.removeRecipe(true, Items.diamond_shovel);
-            Proxy.proxy.removeRecipe(true, Items.diamond_axe);
+                                          'S', Items.ENDER_EYE,
+                                          'A', Items.DIAMOND_AXE,
+                                          'B', Items.DIAMOND_SHOVEL,
+                                          'C', Items.DIAMOND_PICKAXE,
+                                          'D', Blocks.LAPIS_BLOCK);
+            Proxy.proxy.removeRecipe(true, Items.DIAMOND_PICKAXE);
+            Proxy.proxy.removeRecipe(true, Items.DIAMOND_SHOVEL);
+            Proxy.proxy.removeRecipe(true, Items.DIAMOND_AXE);
         }
     }
 }

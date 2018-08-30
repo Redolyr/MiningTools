@@ -8,12 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
- *
- * @author Redolyr75724
- *
+ * @author redolyr
  */
-public interface IBreakingTouch
-{
-    public boolean breakingTouchUseing(ItemStack item, World world, int x, int y, int z);
-    public ArrayList<ItemStack> breaking(ItemStack item, World world, int x, int y, int z, int fortune);
+public interface IBreakingTouch {
+    boolean breakingTouchUsing(ItemStack item, World world, int x, int y, int z);
+
+    ArrayList<ItemStack> breaking(ItemStack item, World world, int x, int y, int z, int fortune);
 }

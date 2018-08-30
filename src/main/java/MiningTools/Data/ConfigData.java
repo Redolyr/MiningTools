@@ -1,7 +1,5 @@
 package MiningTools.Data;
 
-import MiningTools.Configration.CustomConfigrations;
-
 /**
  *
  * @author Redolyr75724
@@ -9,7 +7,7 @@ import MiningTools.Configration.CustomConfigrations;
  */
 public class ConfigData
 {
-    public static CustomConfigrations configSet;
+    public static net.minecraftforge.common.config.Configuration configSet;
     public static Boolean MiningToolsLowRecipe = true;
     public static Boolean MiningToolsHighRecipe = false;
     public static Boolean StoneUpgradeRecipe = true;

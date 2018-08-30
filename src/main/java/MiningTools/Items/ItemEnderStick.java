@@ -1,14 +1,10 @@
 package MiningTools.Items;
 
 /**
- *
- * @author Redolyr75724
- *
+ * @author redolyr
  */
-public class ItemEnderStick extends ItemPacks
-{
-	public ItemEnderStick(String domain, String itemName)
-	{
+public class ItemEnderStick extends ItemPacks {
+	public ItemEnderStick(String domain, String itemName) {
 		super(domain, itemName);
 	}
 }

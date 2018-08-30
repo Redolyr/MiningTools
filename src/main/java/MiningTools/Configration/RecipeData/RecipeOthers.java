@@ -21,7 +21,7 @@ public class RecipeOthers
                                     "SXS",
                                     "SXS",
                                     'X', new ItemStack(Proxy.proxy.Items().EnderStick),
-                                    'S', Items.stick);
+                                    'S', Items.STICK);
         }
 
         if (Proxy.proxy.Items().EnderStick != null)
@@ -30,8 +30,8 @@ public class RecipeOthers
                                     "XSX",
                                     "XSX",
                                     "XSX",
-                                    'X', Items.stick,
-                                    'S', Items.ender_pearl);
+                                    'X', Items.STICK,
+                                    'S', Items.ENDER_PEARL);
         }
 
         if (Proxy.proxy.Items().HarvesterIngots != null)
@@ -41,11 +41,11 @@ public class RecipeOthers
                                     "BSC",
                                     "DXD",
                                     'X', Proxy.proxy.Items().MiningStick,
-                                    'S', Items.ender_eye,
-                                    'A', Items.diamond_axe,
-                                    'B', Items.diamond_shovel,
-                                    'C', Items.diamond_pickaxe,
-                                    'D', Items.iron_ingot);
+                                    'S', Items.ENDER_EYE,
+                                    'A', Items.DIAMOND_AXE,
+                                    'B', Items.DIAMOND_SHOVEL,
+                                    'C', Items.DIAMOND_PICKAXE,
+                                    'D', Items.IRON_INGOT);
         }
 
 //        if (Proxy.proxy.Blocks().SuperGlowStone != null)
@@ -89,11 +89,11 @@ public class RecipeOthers
                                     " A ",
                                     "BSC",
                                     " X ",
-                                    'X', Items.stick,
-                                    'S', Blocks.stone,
-                                    'A', Items.iron_axe,
-                                    'B', Items.iron_shovel,
-                                    'C', Items.iron_pickaxe);
+                                    'X', Items.STICK,
+                                    'S', Blocks.STONE,
+                                    'A', Items.IRON_AXE,
+                                    'B', Items.IRON_SHOVEL,
+                                    'C', Items.IRON_PICKAXE);
         }
     }
 }

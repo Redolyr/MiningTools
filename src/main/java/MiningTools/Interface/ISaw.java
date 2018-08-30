@@ -1,6 +1,5 @@
 package MiningTools.Interface;
 
-public abstract interface ISaw
-{
-    public abstract int getCuttingStrength();
+public interface ISaw {
+    int getCuttingStrength();
 }

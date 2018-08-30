@@ -1,9 +1,10 @@
 package MiningTools.Interface;
 
+import net.minecraft.world.World;
+
 import java.util.List;
 
-import net.minecraft.entity.player.EntityPlayer;
-
 public interface IInformation {
-	void setInformation(EntityPlayer par2EntityPlayer, List par3List);
+
+    void setInformation(World par2World, List par3List);
 }

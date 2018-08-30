@@ -20,10 +20,10 @@ public class RecipeLowMiningTools
                                           "BSC",
                                           " X ",
                                           'X', Proxy.proxy.Items().MiningStick,
-                                          'S', Items.ender_eye,
-                                          'A', Items.diamond_axe,
-                                          'B', Items.diamond_shovel,
-                                          'C', Items.diamond_pickaxe);
+                                          'S', Items.ENDER_EYE,
+                                          'A', Items.DIAMOND_AXE,
+                                          'B', Items.DIAMOND_SHOVEL,
+                                          'C', Items.DIAMOND_PICKAXE);
         }
     }
 }

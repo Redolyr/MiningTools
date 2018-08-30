@@ -4,11 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 /**
- *
- * @author Redolyr75724
- *
+ * @author redolyr
  */
-public interface IAxe
-{
-    public float func_150893_a(ItemStack par1ItemStack, Block par2Block);
+public interface IAxe {
+    float func_150893_a(ItemStack par1ItemStack, Block par2Block);
 }

@@ -14,34 +14,34 @@ public class RecipeStoneUpgrade
 {
     public RecipeStoneUpgrade()
     {
-        if (Items.stone_pickaxe != null)
+        if (Items.STONE_PICKAXE != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.stone_pickaxe),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.STONE_PICKAXE),
                                           " X ",
                                           "XAX",
                                           " X ",
-                                          'A', Items.wooden_pickaxe,
-                                          'X', Blocks.cobblestone);
+                                          'A', Items.WOODEN_PICKAXE,
+                                          'X', Blocks.COBBLESTONE);
         }
 
-        if (Items.stone_shovel != null)
+        if (Items.STONE_SHOVEL != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.stone_shovel),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.STONE_SHOVEL),
                                           " X ",
                                           "XAX",
                                           " X ",
-                                          'A', Items.wooden_shovel,
-                                          'X', Blocks.cobblestone);
+                                          'A', Items.WOODEN_SHOVEL,
+                                          'X', Blocks.COBBLESTONE);
         }
 
-        if (Items.stone_axe != null)
+        if (Items.STONE_AXE != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.stone_axe),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.STONE_AXE),
                                           " X ",
                                           "XAX",
                                           " X ",
-                                          'A', Items.wooden_axe,
-                                          'X', Blocks.cobblestone);
+                                          'A', Items.WOODEN_AXE,
+                                          'X', Blocks.COBBLESTONE);
         }
     }
 }

@@ -13,34 +13,34 @@ public class RecipeIronUpgrade
 {
     public RecipeIronUpgrade()
     {
-        if (Items.iron_pickaxe != null)
+        if (Items.IRON_PICKAXE != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.iron_pickaxe),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.IRON_PICKAXE),
                                           "   ",
                                           "XAX",
                                           "   ",
-                                          'A', Items.stone_pickaxe,
-                                          'X', Items.iron_ingot);
+                                          'A', Items.STONE_PICKAXE,
+                                          'X', Items.IRON_INGOT);
         }
 
-        if (Items.iron_shovel != null)
+        if (Items.IRON_SHOVEL != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.iron_shovel),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.IRON_SHOVEL),
                                           "   ",
                                           "XAX",
                                           "   ",
-                                          'A', Items.stone_shovel,
-                                          'X', Items.iron_ingot);
+                                          'A', Items.STONE_SHOVEL,
+                                          'X', Items.IRON_INGOT);
         }
 
-        if (Items.iron_axe != null)
+        if (Items.IRON_AXE != null)
         {
-            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.iron_axe),
+            Proxy.proxy.addCraftingRecipe(new ItemStack(Items.IRON_AXE),
                                           "   ",
                                           "XAX",
                                           "   ",
-                                          'A', Items.stone_axe,
-                                          'X', Items.iron_ingot);
+                                          'A', Items.STONE_AXE,
+                                          'X', Items.IRON_INGOT);
         }
     }
 }

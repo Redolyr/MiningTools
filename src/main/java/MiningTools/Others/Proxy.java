@@ -29,22 +29,26 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import org.lwjgl.opengl.GL11;
 
-import MiningTools.Configration.CustomConfigrations;
 import MiningTools.Data.BlocksData;
 import MiningTools.Data.ConfigData;
 import MiningTools.Data.ItemsData;
@@ -102,12 +106,12 @@ public abstract class Proxy {
 
     @SuppressWarnings("unchecked")
     public void addCraftingRecipe(ItemStack result, Object... recipe) {
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(result, recipe));
+//        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(result, recipe));
         //GameRegistry.addRecipe(result, recipe);
     }
 
     public void addShapelessRecipe(ItemStack result, Object... recipe) {
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(result, recipe));
+//        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(result, recipe));
         //GameRegistry.addShapelessRecipe(result, recipe);
     }
 
@@ -115,17 +119,17 @@ public abstract class Proxy {
         return new Random(world.getSeed());
     }
 
-    public void registerBlock(Block block) {
-        registerBlock(block, ItemBlock.class);
-    }
+//    public void registerBlock(Block block) {
+//        registerBlock(block, ItemBlock.class);
+//    }
 
-    public void registerBlock(Block block, Class<? extends ItemBlock> item) {
-        GameRegistry.registerBlock(block, item, block.getUnlocalizedName().replace("tile.", ""));
-    }
+//    public void registerBlock(Block block, Class<? extends ItemBlock> item) {
+//        GameRegistry.registerBlock(block, item, block.getUnlocalizedName().replace("tile.", ""));
+//    }
 
-    public void registerItem(Item item) {
-        GameRegistry.registerItem(item, item.getUnlocalizedName().replace("item.", ""));
-    }
+//    public void registerItem(Item item) {
+//        GameRegistry.registerItem(item, item.getUnlocalizedName().replace("item.", ""));
+//    }
 
     public void registerGui(Object obj, IGuiHandler handler) {
         NetworkRegistry.INSTANCE.registerGuiHandler(obj, handler);
@@ -136,18 +140,16 @@ public abstract class Proxy {
         this.registerGui(obj, handler);
     }
 
-    @SuppressWarnings("unchecked")
-    public void addCraftingRecipe(IRecipe recipe) {
-        CraftingManager.getInstance().getRecipeList().add(recipe);
-    }
+//    public void addCraftingRecipe(IRecipe recipe) {
+//        CraftingManager.getInstance().getRecipeList().add(recipe);
+//    }
 
-    public void registerDimension(int id, int providerType, Class<? extends WorldProvider> provider, boolean keepLoaded) {
-        DimensionManager.registerProviderType(id, provider, keepLoaded);
-        DimensionManager.registerDimension(id, providerType);
+    public void registerDimension(int id, DimensionType dimensionType, Class<? extends WorldProvider> provider, boolean keepLoaded) {
+        DimensionManager.registerDimension(id, dimensionType);
     }
 
     public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id) {
-        TileEntity.addMapping(tileEntityClass, id);
+        TileEntity.register(id, tileEntityClass);
     }
 
     public ResourceLocation MiningToolsLocation(String domain) {
@@ -164,35 +166,34 @@ public abstract class Proxy {
     }
 
     public void registerArmorItem(ItemArmor Head, ItemArmor Body, ItemArmor Leggins, ItemArmor Boots) {
-        GameRegistry.registerItem(Head, Head.getUnlocalizedName().replace("item.", ""));
-        GameRegistry.registerItem(Body, Body.getUnlocalizedName().replace("item.", ""));
-        GameRegistry.registerItem(Leggins, Leggins.getUnlocalizedName().replace("item.", ""));
-        GameRegistry.registerItem(Boots, Boots.getUnlocalizedName().replace("item.", ""));
+//        GameRegistry.registerItem(Head, Head.getUnlocalizedName().replace("item.", ""));
+//        GameRegistry.registerItem(Body, Body.getUnlocalizedName().replace("item.", ""));
+//        GameRegistry.registerItem(Leggins, Leggins.getUnlocalizedName().replace("item.", ""));
+//        GameRegistry.registerItem(Boots, Boots.getUnlocalizedName().replace("item.", ""));
     }
 
-    @SuppressWarnings("unchecked")
-    public void addCraftingRecipe(boolean on_off, ItemStack stacks, Object... obj) {
-        if (on_off) {
-            CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(stacks, obj));
-        }
-    }
+//    public void addCraftingRecipe(boolean on_off, ItemStack stacks, Object... obj) {
+//        if (on_off) {
+//            CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(stacks, obj));
+//        }
+//    }
 
-    public String addEnumChatFormatingColorText(boolean on_off, ChatFormatting enumChatFormating, String formatingText) {
-        if (on_off) {
-            addName(ChatFormatting.AQUA + localize(formatingText));
-        }
+//    public String addEnumChatFormatingColorText(boolean on_off, ChatFormatting enumChatFormating, String formatingText) {
+//        if (on_off) {
+//            addName(ChatFormatting.AQUA + localize(formatingText));
+//        }
+//
+//        return formatingText;
+//    }
 
-        return formatingText;
-    }
-
-    public String addName(String string) {
-        return string;
-    }
-
-    public String addName(Object obj, String string) {
-        LanguageRegistry.addName(obj, string);
-        return string;
-    }
+//    public String addName(String string) {
+//        return string;
+//    }
+//
+//    public String addName(Object obj, String string) {
+//        LanguageRegistry.addName(obj, string);
+//        return string;
+//    }
 
     public void addInfomationText(List par1par3List, String Text, String Text2) {
         if (on_off == true) {
@@ -331,22 +332,22 @@ public abstract class Proxy {
         }
     }
 
-    ToolMaterial toolMaterial;
-
-    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, ItemPacks items) {
-        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
-        toolMaterial.customCraftingMaterial = items;
-    }
-
-    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, ItemStack items) {
-        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
-        toolMaterial.customCraftingMaterial = items.getItem();
-    }
-
-    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, Block blocks) {
-        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
-        toolMaterial.customCraftingMaterial = Item.getItemFromBlock(blocks);
-    }
+//    ToolMaterial toolMaterial;
+//
+//    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, ItemPacks items) {
+//        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
+//        toolMaterial.customCraftingMaterial = items;
+//    }
+//
+//    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, ItemStack items) {
+//        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
+//        toolMaterial.customCraftingMaterial = items.getItem();
+//    }
+//
+//    public void ToolMaterialers(String Name, int harvestLevel, int maxUses, Float efficiency, Float damage, int enchantability, Block blocks) {
+//        toolMaterial = EnumHelper.addToolMaterial(Name, harvestLevel, maxUses, efficiency, damage, enchantability);
+//        toolMaterial.customCraftingMaterial = Item.getItemFromBlock(blocks);
+//    }
 
     public void bindTexture(String path) {
 //        Minecraft.getMinecraft().renderEngine.bindTexture(MiningToolsLocation("textures/models/" + path + ".png"));
@@ -387,255 +388,61 @@ public abstract class Proxy {
         }
     }
 
-    public void registerItem(ItemPacks items, String unlocalizedName, int craft, int meta, Object... obj) {
-        items.setData(getMiningToolsLocation(), unlocalizedName);
-        registerItem(items);
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items, craft, meta), obj));
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Item items, int craftMath, int meta, Object... obj) {
-        if (on_off) {
-            if (mode == false) {
-                CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(items, craftMath, meta), obj));
-            }
-
-            if (mode == true) {
-                CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items, craftMath, meta), obj));
-            }
-        }
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Block blocks, int craftMath, int meta, Object... obj) {
-        if (on_off) {
-            if (mode == true) {
-                CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(blocks, craftMath, meta), obj));
-            }
-
-            if (mode == false) {
-                CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(blocks, craftMath, meta), obj));
-            }
-        }
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Item items, int craftMath, Object... obj) {
-        addRecipe(on_off, mode, items, craftMath, 0, obj);
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Block blocks, int craftMath, Object... obj) {
-        addRecipe(on_off, mode, blocks, craftMath, 0, obj);
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Item items, Object... obj) {
-        addRecipe(on_off, mode, items, 1, 0, obj);
-    }
-
-    public void addRecipe(boolean on_off, boolean mode, Block blocks, Object... obj) {
-        addRecipe(on_off, mode, blocks, 1, 0, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Item items, int craftMath, int meta, Object... obj) {
-        addRecipe(on_off, false, items, craftMath, meta, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Block blocks, int craftMath, int meta, Object... obj) {
-        addRecipe(on_off, false, blocks, craftMath, meta, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Item items, int craftMath, Object... obj) {
-        addRecipe(on_off, false, items, craftMath, 0, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Block blocks, int craftMath, Object... obj) {
-        addRecipe(on_off, false, blocks, craftMath, 0, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Item items, Object... obj) {
-        addRecipe(on_off, false, items, 1, 0, obj);
-    }
-
-    public void addShapedRecipe(boolean on_off, Block blocks, Object... obj) {
-        addRecipe(on_off, false, blocks, 1, 0, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Item items, int craftMath, int meta, Object... obj) {
-        addRecipe(on_off, true, items, craftMath, meta, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Block blocks, int craftMath, int meta, Object... obj) {
-        addRecipe(on_off, true, blocks, craftMath, meta, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Item items, int craftMath, Object... obj) {
-        addRecipe(on_off, true, items, craftMath, 0, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Block blocks, int craftMath, Object... obj) {
-        addRecipe(on_off, true, blocks, craftMath, 0, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Item items, Object... obj) {
-        addRecipe(on_off, true, items, 1, 0, obj);
-    }
-
-    public void addShapelessOreRecipeRecipe(boolean on_off, Block blocks, Object... obj) {
-        addRecipe(on_off, true, blocks, 1, 0, obj);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items, int craftMath, int meta, Float droppedEXP) {
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(item, metaData), new ItemStack(items, craftMath, meta), droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items, int craftMath, int meta, Float droppedEXP) {
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(block, metaData), new ItemStack(items, craftMath, meta), droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks, int craftMath, int meta, Float droppedEXP) {
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(item, metaData), new ItemStack(blocks, craftMath, meta), droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks, int craftMath, int meta, Float droppedEXP) {
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(block, metaData), new ItemStack(blocks, craftMath, meta), droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, item, metaData, items, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, block, metaData, items, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, item, metaData, blocks, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, block, metaData, blocks, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items, int craftMath, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, metaData, items, craftMath, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items, int craftMath, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, metaData, items, craftMath, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks, int craftMath, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, metaData, blocks, craftMath, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks, int craftMath, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, metaData, blocks, craftMath, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, metaData, items, 1, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, metaData, items, 1, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, metaData, blocks, 1, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, metaData, blocks, 1, 0, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items) {
-        addFurnaceRecipe(on_off, item, metaData, items, 1, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items) {
-        addFurnaceRecipe(on_off, block, metaData, items, 1, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks) {
-        addFurnaceRecipe(on_off, item, metaData, blocks, 1, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks) {
-        addFurnaceRecipe(on_off, block, metaData, blocks, 1, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Item items, int craftMath, int meta, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, 0, items, craftMath, meta, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Block blocks, int craftMath, int meta, Float droppedEXP) {
-        addFurnaceRecipe(on_off, item, 0, blocks, craftMath, meta, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Item items, int craftMath, int meta, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, 0, items, craftMath, meta, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Block blocks, int craftMath, int meta, Float droppedEXP) {
-        addFurnaceRecipe(on_off, block, 0, blocks, craftMath, meta, droppedEXP);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Item items, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, item, 0, items, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Block blocks, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, item, 0, blocks, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Item items, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, block, 0, items, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Block blocks, int craftMath, int meta) {
-        addFurnaceRecipe(on_off, block, 0, blocks, craftMath, meta, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Item items, int craftMath) {
-        addFurnaceRecipe(on_off, item, 0, items, craftMath, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Block blocks, int craftMath) {
-        addFurnaceRecipe(on_off, item, 0, blocks, craftMath, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Item items, int craftMath) {
-        addFurnaceRecipe(on_off, block, 0, items, craftMath, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Block blocks, int craftMath) {
-        addFurnaceRecipe(on_off, block, 0, blocks, craftMath, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Item items) {
-        addFurnaceRecipe(on_off, item, 0, items, 0, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Item item, Block blocks) {
-        addFurnaceRecipe(on_off, item, 0, blocks, 0, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Item items) {
-        addFurnaceRecipe(on_off, block, 0, items, 0, 0, 0.0F);
-    }
-
-    public void addFurnaceRecipe(boolean on_off, Block block, Block blocks) {
-        addFurnaceRecipe(on_off, block, 0, blocks, 0, 0, 0.0F);
-    }
-
-    @SuppressWarnings("deprecation")
-    public void addDamageName(Item item, int meta, String name) {
-        Object obj = new ItemStack(item, 1, meta);
-        LanguageRegistry.instance().addName(obj, name);
-    }
-
-    @SuppressWarnings("deprecation")
-    public void addDamageName(Block block, int meta, String name) {
-        Object obj = new ItemStack(block, 1, meta);
-        LanguageRegistry.instance().addName(obj, name);
-    }
+//    public void registerItem(ItemPacks items, String unlocalizedName, int craft, int meta, Object... obj) {
+//        items.setData(getMiningToolsLocation(), unlocalizedName);
+//        registerItem(items);
+//        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items, craft, meta), obj));
+//    }
+//
+//    public void addRecipe(boolean on_off, boolean mode, Item items, int craftMath, int meta, Object... obj) {
+//        if (on_off) {
+//            if (mode == false) {
+//                CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(items, craftMath, meta), obj));
+//            }
+//
+//            if (mode == true) {
+//                CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items, craftMath, meta), obj));
+//            }
+//        }
+//    }
+//
+//    public void addRecipe(boolean on_off, boolean mode, Block blocks, int craftMath, int meta, Object... obj) {
+//        if (on_off) {
+//            if (mode == true) {
+//                CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(blocks, craftMath, meta), obj));
+//            }
+//
+//            if (mode == false) {
+//                CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(blocks, craftMath, meta), obj));
+//            }
+//        }
+//    }
+//
+//    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Item items, int craftMath, int meta, Float droppedEXP) {
+//        FurnaceRecipes.smelting().func_151394_a(new ItemStack(item, metaData), new ItemStack(items, craftMath, meta), droppedEXP);
+//    }
+//
+//    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Item items, int craftMath, int meta, Float droppedEXP) {
+//        FurnaceRecipes.smelting().func_151394_a(new ItemStack(block, metaData), new ItemStack(items, craftMath, meta), droppedEXP);
+//    }
+//
+//    public void addFurnaceRecipe(boolean on_off, Item item, int metaData, Block blocks, int craftMath, int meta, Float droppedEXP) {
+//        FurnaceRecipes.smelting().func_151394_a(new ItemStack(item, metaData), new ItemStack(blocks, craftMath, meta), droppedEXP);
+//    }
+//
+//    public void addFurnaceRecipe(boolean on_off, Block block, int metaData, Block blocks, int craftMath, int meta, Float droppedEXP) {
+//        FurnaceRecipes.smelting().func_151394_a(new ItemStack(block, metaData), new ItemStack(blocks, craftMath, meta), droppedEXP);
+//    }
+//
+//    public void addDamageName(Item item, int meta, String name) {
+//        Object obj = new ItemStack(item, 1, meta);
+//        LanguageRegistry.instance().addName(obj, name);
+//    }
+//
+//    public void addDamageName(Block block, int meta, String name) {
+//        Object obj = new ItemStack(block, 1, meta);
+//        LanguageRegistry.instance().addName(obj, name);
+//    }
 
     public Object[] addObjectRecipe(Object obj1, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
         return new Object[]{"ABC", "DEF", "GHI", 'A', obj1, 'B', obj2, 'C', obj3, 'D', obj4, 'E', obj5, 'F', obj6, 'G', obj7, 'H', obj8, 'I', obj9};
@@ -649,17 +456,13 @@ public abstract class Proxy {
         return new ItemStack(block, craftMath, meta);
     }
 
-    public void addRecipe(Item item, int craftMath, int meta, Object obj1, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
-        CraftingManager.getInstance().addRecipe(addItemRecipe(item, craftMath, meta), addObjectRecipe(obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9));
-    }
-
-    public void addRecipe(Block block, int craftMath, int meta, Object obj1, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
-        CraftingManager.getInstance().addRecipe(addBlockRecipe(block, craftMath, meta), addObjectRecipe(obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9));
-    }
-
-    public void registerMiningToolsIcon(IIcon par1Icon, IIconRegister par2IconRegister, String name) {
-        par1Icon = par2IconRegister.registerIcon((getMiningToolsLocation() + name).replace("tile.", ""));
-    }
+//    public void addRecipe(Item item, int craftMath, int meta, Object obj1, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
+//        CraftingManager.getInstance().addRecipe(addItemRecipe(item, craftMath, meta), addObjectRecipe(obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9));
+//    }
+//
+//    public void addRecipe(Block block, int craftMath, int meta, Object obj1, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
+//        CraftingManager.getInstance().addRecipe(addBlockRecipe(block, craftMath, meta), addObjectRecipe(obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9));
+//    }
 
     public GL11 glScalef(Float x, Float y, Float z) {
         GL11.glScalef(x, y, z);
@@ -682,169 +485,169 @@ public abstract class Proxy {
         modeling.render(entity, f, f1, f2, f3, f4, f5);
     }
 
-    public void MASTER_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case ENTITY:
-                case EQUIPPED:
-                case EQUIPPED_FIRST_PERSON:
-                case INVENTORY:
-                case FIRST_PERSON_MAP: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
+//    public void MASTER_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case ENTITY:
+//                case EQUIPPED:
+//                case EQUIPPED_FIRST_PERSON:
+//                case INVENTORY:
+//                case FIRST_PERSON_MAP: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public void ENTITY_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case ENTITY: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public void EQUIPPED_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case EQUIPPED: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public void EQUIPPED_FIRST_PERSON_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case EQUIPPED_FIRST_PERSON: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public void INVENTORY_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case INVENTORY: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public void FIRST_PERSON_MAP_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
+//        if (on_off) {
+//            switch (type) {
+//                case FIRST_PERSON_MAP: {
+//                    GL11.glPushMatrix();
+//                    glScalef(scala, scala, scala);
+//                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
+//                    glTranslatef(translatefx, translatefy, translatefz);
+//                    bindTexture(texture);
+//                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
+//                    GL11.glPopMatrix();
+//                }
+//
+//                default:
+//                    break;
+//            }
+//        }
+//    }
+//
+//    public boolean handleRenderType_Rendering(Boolean on_off, ItemRenderType type) {
+//        if (on_off) {
+//            switch (type) {
+//                case ENTITY:
+//                    return FancyFastLink();
+//                case EQUIPPED:
+//                    return FancyFastLink();
+//                case EQUIPPED_FIRST_PERSON:
+//                    return FancyFastLink();
+////            case INVENTORY:
+////            	return FancyFastLink();
+////            case FIRST_PERSON_MAP:
+////            	return FancyFastLink();
+//
+//                default:
+//                    break;
+//            }
+//            return false;
+//        }
+//
+//        return false;
+//    }
 
-                default:
-                    break;
-            }
-        }
-    }
+//    public EntityRegistry registerEntity() {
+//        return null;
+//    }
 
-    public void ENTITY_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case ENTITY: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    public void EQUIPPED_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case EQUIPPED: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    public void EQUIPPED_FIRST_PERSON_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case EQUIPPED_FIRST_PERSON: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    public void INVENTORY_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case INVENTORY: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    public void FIRST_PERSON_MAP_Rendering(Boolean on_off, ItemRenderType type, Float scala, Float R1, Float R2, Float R3, Float G1, Float G2, Float G3, Float B1, Float B2, Float B3, Float WB1, Float WB2, Float WB3, Float translatefx, Float translatefy, Float translatefz, String texture, ModelBase modeling, Entity entity, Float f, Float f1, Float f2, Float f3, Float f4, Float f5) {
-        if (on_off) {
-            switch (type) {
-                case FIRST_PERSON_MAP: {
-                    GL11.glPushMatrix();
-                    glScalef(scala, scala, scala);
-                    glRotatef(R1, R2, R3, G1, G2, G3, B1, B2, B3, WB1, WB2, WB3);
-                    glTranslatef(translatefx, translatefy, translatefz);
-                    bindTexture(texture);
-                    renderingModel(modeling, entity, f, f1, f2, f3, f4, f5);
-                    GL11.glPopMatrix();
-                }
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    public boolean handleRenderType_Rendering(Boolean on_off, ItemRenderType type) {
-        if (on_off) {
-            switch (type) {
-                case ENTITY:
-                    return FancyFastLink();
-                case EQUIPPED:
-                    return FancyFastLink();
-                case EQUIPPED_FIRST_PERSON:
-                    return FancyFastLink();
-//            case INVENTORY:
-//            	return FancyFastLink();
-//            case FIRST_PERSON_MAP:
-//            	return FancyFastLink();
-
-                default:
-                    break;
-            }
-            return false;
-        }
-
-        return false;
-    }
-
-    public EntityRegistry registerEntity() {
-        return null;
-    }
-
-    public void renderingEntity(Class<? extends Entity> entity, String entityName_Unlocalizedname, int entityID, Render render) {
-        EntityRegistry.registerGlobalEntityID(entity, entityName_Unlocalizedname, entityID);
-        RenderManager.instance.entityRenderMap.put(entity, render);
-    }
+//    public void renderingEntity(Class<? extends Entity> entity, String entityName_Unlocalizedname, int entityID, Render render) {
+//        EntityRegistry.registerGlobalEntityID(entity, entityName_Unlocalizedname, entityID);
+//        RenderManager.instance.entityRenderMap.put(entity, render);
+//    }
 
     public void removeRecipe(Boolean on_off, ItemStack par1ItemStack) {
-        List recipes = CraftingManager.getInstance().getRecipeList();
-
-        for (Iterator i = recipes.listIterator(); i.hasNext(); ) {
-            IRecipe recipe = (IRecipe) i.next();
-            ItemStack is = recipe.getRecipeOutput();
-
-            if (is != null) {
-                if (is == par1ItemStack) {
-                    i.remove();
-                }
-            }
-        }
+//        List recipes = CraftingManager.getInstance().getRecipeList();
+//
+//        for (Iterator i = recipes.listIterator(); i.hasNext(); ) {
+//            IRecipe recipe = (IRecipe) i.next();
+//            ItemStack is = recipe.getRecipeOutput();
+//
+//            if (is != null) {
+//                if (is == par1ItemStack) {
+//                    i.remove();
+//                }
+//            }
+//        }
     }
 
     public void removeRecipe(Boolean on_off, Item items, Integer removeMath, Integer meta) {
@@ -918,40 +721,40 @@ public abstract class Proxy {
     }
 
     public void ConfigFile(FMLPreInitializationEvent event, String fileName) {
-        ConfigData.configSet = new CustomConfigrations(new File(event.getModConfigurationDirectory(), "MiningTools/" + fileName + ".dat"));
+        ConfigData.configSet = new Configuration(new File(event.getModConfigurationDirectory(), "MiningTools/" + fileName + ".dat"));
     }
 
-    public void addNameForObject(boolean on_off, Object obj, String en_US, String de_DE, String ja_JP) {
-        if (on_off) {
-            LanguageRegistry.instance().addNameForObject(obj, "en_US", en_US);
-            LanguageRegistry.instance().addNameForObject(obj, "de_DE", de_DE);
-            LanguageRegistry.instance().addNameForObject(obj, "ja_JP", ja_JP);
-        }
-    }
+//    public void addNameForObject(boolean on_off, Object obj, String en_US, String de_DE, String ja_JP) {
+//        if (on_off) {
+//            LanguageRegistry.instance().addNameForObject(obj, "en_US", en_US);
+//            LanguageRegistry.instance().addNameForObject(obj, "de_DE", de_DE);
+//            LanguageRegistry.instance().addNameForObject(obj, "ja_JP", ja_JP);
+//        }
+//    }
+//
+//    public void addNameForObject(boolean on_off, ChatFormatting enumChatFormatteing, Object obj, String en_US, String de_DE, String ja_JP) {
+//        if (on_off) {
+//            LanguageRegistry.instance().addNameForObject(obj, "en_US", enumChatFormatteing + localize(en_US));
+//            LanguageRegistry.instance().addNameForObject(obj, "de_DE", enumChatFormatteing + localize(de_DE));
+//            LanguageRegistry.instance().addNameForObject(obj, "ja_JP", enumChatFormatteing + localize(ja_JP));
+//        }
+//    }
+//
+//    public void addStringLocalization(String text, String en_US, String de_DE, String ja_JP) {
+//        LanguageRegistry.instance().addStringLocalization(text, "en_US", en_US);
+//        LanguageRegistry.instance().addStringLocalization(text, "de_DE", de_DE);
+//        LanguageRegistry.instance().addStringLocalization(text, "ja_JP", ja_JP);
+//    }
 
-    public void addNameForObject(boolean on_off, ChatFormatting enumChatFormatteing, Object obj, String en_US, String de_DE, String ja_JP) {
-        if (on_off) {
-            LanguageRegistry.instance().addNameForObject(obj, "en_US", enumChatFormatteing + localize(en_US));
-            LanguageRegistry.instance().addNameForObject(obj, "de_DE", enumChatFormatteing + localize(de_DE));
-            LanguageRegistry.instance().addNameForObject(obj, "ja_JP", enumChatFormatteing + localize(ja_JP));
-        }
-    }
-
-    public void addStringLocalization(String text, String en_US, String de_DE, String ja_JP) {
-        LanguageRegistry.instance().addStringLocalization(text, "en_US", en_US);
-        LanguageRegistry.instance().addStringLocalization(text, "de_DE", de_DE);
-        LanguageRegistry.instance().addStringLocalization(text, "ja_JP", ja_JP);
-    }
-
-    public void registerItem(Item items, String registerUnlocalizedName) {
-        registerItem(items);
-        addName(items, registerUnlocalizedName);
-    }
-
-    public void registerBlock(Block blocks, String registerUnlocalizedName) {
-        registerBlock(blocks);
-        addName(blocks, registerUnlocalizedName);
-    }
+//    public void registerItem(Item items, String registerUnlocalizedName) {
+//        registerItem(items);
+//        addName(items, registerUnlocalizedName);
+//    }
+//
+//    public void registerBlock(Block blocks, String registerUnlocalizedName) {
+//        registerBlock(blocks);
+//        addName(blocks, registerUnlocalizedName);
+//    }
 
     private ItemStack itemStack = null;
     private Integer damage = null;
@@ -1856,11 +1659,11 @@ public abstract class Proxy {
         return replacePlus(replacement, KeyBinding_Large, KeyBinding_Small);
     }
 
-    public String addName(Boolean enable, Object obj, String name) {
-        if (enable == true)
-            return addName(obj, name);
-        return addName(obj, name);
-    }
+//    public String addName(Boolean enable, Object obj, String name) {
+//        if (enable == true)
+//            return addName(obj, name);
+//        return addName(obj, name);
+//    }
 
     public abstract void ConfigurationInitializationEvent(Boolean enable, Boolean ItemsIO, Boolean BlocksIO, Boolean ModelIO, Boolean RecipeIO);
 

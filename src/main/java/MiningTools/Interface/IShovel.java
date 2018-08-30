@@ -3,11 +3,8 @@ package MiningTools.Interface;
 import net.minecraft.block.Block;
 
 /**
- *
- * @author Redolyr75724
- *
+ * @author redlyr
  */
-public interface IShovel
-{
-    public boolean canHarvestBlock(Block par1Block);
+public interface IShovel {
+    boolean canHarvestBlock(Block par1Block);
 }
