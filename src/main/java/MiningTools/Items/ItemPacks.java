@@ -84,19 +84,12 @@ public abstract class ItemPacks extends Item implements IInformation
     @SideOnly(Side.CLIENT)
     public void setInformation(EntityPlayer par2EntityPlayer, List par3List)
     {
-        par3List.add((String) "ID: " + this);
-        par3List.add((String) "Damage: " + this.getDisplayDamage(itemStacks) + "/" + this.getMaxDamage());
+        par3List.add("ID: " + this);
+        par3List.add("Damage: " + this.getDisplayDamage(itemStacks) + "/" + this.getMaxDamage());
     }
     protected void isLShiftMessage(List par3List)
     {
-        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
-        {
-            isLShiftRotations = true;
-        }
-        else
-        {
-            isLShiftRotations = false;
-        }
+        isLShiftRotations = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT);
         if (isLShiftRotations == false)
         {
             Proxy.proxy.addInfomationText(par3List, "press.LShift.infomation");
@@ -104,23 +97,12 @@ public abstract class ItemPacks extends Item implements IInformation
     }
     protected void isRShiftMessage(List par3List)
     {
-        if (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-        {
-            isRShiftRotations = true;
-        }
-        else
-        {
-            isRShiftRotations = false;
-        }
+        isRShiftRotations = Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
         if (isRShiftRotations == false)
         {
             Proxy.proxy.addInfomationText(par3List, "press.RShift.infomation");
         }
     }
-//    public CreativeTabs[] getCreativeTabs()
-//    {
-//    	return new CreativeTabs[] { MiningTools.tabsMiningTools };
-//    }
     public final String replace(ItemPacks itemPacks)
     {
     	return itemPacks.getUnlocalizedName().replace("item.", "").replace(".name", "");
